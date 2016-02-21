@@ -34,6 +34,13 @@
     .page_title, .portfolio {
         padding: 100px 0 0 50px;
     }
+    .page_title {
+        position: relative;
+    }
+    .post_title {
+        position: fixed;
+        width: Calc( 100% - 450px );
+    }
     .page_title h1 {
         font-size: 3em;
     }
@@ -46,10 +53,6 @@
     }
     .main iframe {
         height: 450px;
-    }
-    .restrain {
-        width: Calc( 100% - 450px );
-        position: fixed;
     }
     .back {
         position: fixed !important;
@@ -69,7 +72,7 @@
     .main iframe {
         height: 700px;
     }
-    .restrain {
+    .post_title {
         width: Calc( 100% - 650px );
     }
 }
@@ -93,7 +96,7 @@ a {
 a:hover {
     opacity: 0.8;
 }
-.page_title, .portfolio {
+.portfolio {
     position: relative;
 }
 .bg.old {
@@ -124,12 +127,14 @@ a:hover {
     margin: 0 2px 10px 2px;
     vertical-align: bottom;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
 }
 .card .thumbnail {
     width: 200px;
     height: 200px;
     background-size: cover;
     background-position: center center;
+    border-radius: 0.5em 0.5em 0 0;
 }
 .card h4 {
     display: block;
@@ -139,6 +144,7 @@ a:hover {
     height: 40px;
     background: #fff;
     color: #000;
+    border-radius: 0 0 0.5em 0.5em;
 }
 .main {
     background: #fff;

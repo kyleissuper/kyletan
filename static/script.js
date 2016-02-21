@@ -12,11 +12,15 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 
 function newListeners() {
 
+    // Listening for pop state seemed like a good idea,
+    // but it's hard to get it to work right.
+    /*
     // Event listener for pop state
     window.addEventListener("popstate", function() {
         AJAX.direction = AJAX.direction === "+" ? "-" : "+";
         AJAX.request( document.referrer );
     });
+    */
     
     // Event listener for home page card links
     Array.prototype.forEach.call( 
@@ -218,6 +222,8 @@ var AJAX = {
             document.getElementsByClassName("old").remove();
             window.history.pushState({path: AJAX.url}, '', AJAX.url);
             // Important!
+            // It's probably not the most elegant way to do this...
+            // But it will do for now.
             newListeners();
         }, 600);
     },
