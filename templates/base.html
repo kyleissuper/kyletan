@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% if "title" in content %}
+    <title>Kyle Tan - {{ content["title"] }}</title>
+    {% else %}
     <title>Kyle Tan</title>
+    {% endif %}
     <meta name="viewport" content="initial-scale=1">
     <meta name="theme-color" content="#ff6600">
     <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
-    <script src="{{ url_for("static", filename="Cquence.js") }}"></script>
-    <script src="{{ url_for("static", filename="script.js") }}"></script>
+    <script src="{{ url_for("static", filename="velocity.min.js") }}"></script>
+    <script src="{{ url_for("static", filename="script.js") }}" defer></script>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style type="text/css">
-        #bg {
-            background-image: url("{{
-                    url_for('photos', filename=content['image'])
-                    }}");
-        }
-    </style>
     {% block head %}
     {% endblock %}
 </head>
 <body>
     {% if "home" not in content %}
-    <a href="{{ url_for('home') }}" class="back" />
+    <a href="{{ url_for('home') }}" class="back animate_fade" />
               <i class="material-icons">&#xE5C4;</i>
     </a>
     {% endif %}
-    <section id="bg"></section>
+    <section id="bg" class="bg" style="background-image: url('{{
+                    url_for('photos', filename=content['image'])
+                    }}')"></section>
     {% block body %} {% endblock %}
 </body>
 </html>

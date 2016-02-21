@@ -9,11 +9,17 @@
         overflow-x: hidden;
     }
     .page_title, .portfolio {
-        padding: 20px 5px;
+        padding: 20px;
     }
     .main {
+        position: relative;
+        left: 0px;
+        right: 0px;
+        padding-top: 30px;
+        /*
         width: Calc( 100% - 20px );
         margin-left: -9px;
+        */
     }
     .main iframe {
         height: 550px;
@@ -47,7 +53,6 @@
     }
     .back {
         position: fixed !important;
-        z-index: 1;
         top: 20px;
         left: 20px;
     }
@@ -74,6 +79,8 @@ html, body {
     font-family: Roboto, sans-serif;
     color: #fff;
     margin-bottom: 0;
+    overflow-x: hidden;
+    margin: 0;
 }
 header p {
     max-width: 540px;
@@ -86,7 +93,19 @@ a {
 a:hover {
     opacity: 0.8;
 }
-#bg {
+.page_title, .portfolio {
+    position: relative;
+}
+.bg.old {
+    z-index: 10;
+}
+.old {
+    z-index: 11;
+}
+.back.old {
+    z-index: 12;
+}
+.bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -98,6 +117,7 @@ a:hover {
 }
 .back {
     position: absolute;
+    z-index: 1;
 }
 .card {
     display: inline-block;
