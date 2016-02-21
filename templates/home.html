@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<header class="page_title">
+    <h1><a href="#">Kyle Tan</a></h1>
+    <p>Currently pursuing my Bachelor of Business Administration at the National University of Singapore. I learned to code (somewhat) while at <a href="http://99.co" target="_blank">99.co</a>, and it's been a horrible distraction from studying ever since.</p>
+    <a href="https://github.com/kyleissuper/" class="info" target="_blank"><i class="material-icons">&#xE0B3;</i><span>Github</span></a>
+    <a href="mailto:kyle@kyletan.com" class="info" target="_blank"><i class="material-icons">&#xE0BE;</i><span>Email</span></a>
+    <a href="https://www.linkedin.com/in/tankyle" class="info" target="_blank"><i class="material-icons">&#xE7FD;</i><span>LinkedIn</span></a>
+</header>
+<section class="portfolio">
+    {% for item in content["items"] %}
+        <a href="{{ url_for('post', post_id=item['post_id']) }}" class="card">
+            <div class="thumbnail" style="background-image: url('{{ url_for('photos', filename=item['image']) }}')"></div>
+            <h4>{{ item["title"] }}</h4>
+        </a>
+    {% endfor %}
+</section>
+{% endblock %}

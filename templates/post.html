@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<header class="page_title restrain">
+    <h1>{{ content["title"] }}</h1>
+    {% if "url" in content %}
+    <a href="{{ content['url'] }}" class="link" target="_blank">
+        <i class="material-icons">&#xE157;</i>
+        <span>Open link</span>
+    </a>
+    {% endif %}
+</header>
+<section class="main">
+    {{ content["post"] | safe }}
+</section>
+{% endblock %}

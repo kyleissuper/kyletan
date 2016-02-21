@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body %}
+<p>&nbsp;</p>
+<h1>Admin panel</h1>
+<p>This was not designed to be sophisticated. Be happy that it works.</p>
+<ul>
+    <li>Do not change post_id values. You're gonna have a bad day.</li>
+    <li>Order does not automatically change. Have to manually change the values, one at a time.</li>
+    <li>Meant for editing, not for adding/deleting. Deal with it.</li>
+</ul>
+{% for item in content["items"] %}
+<form action="{{ url_for('update_data') }}" method="POST">
+<textarea name="item" rows="20" cols="80">{{ item }}</textarea>
+<input type="submit">
+</form>
+{% endfor %}
+<script type="text/javascript">
+    
+    Array.prototype.forEach.call(
+        document.getElementsByTagName("form"),
+        function precaution( el ) {
+            el.addEventListener("submit", function doubleCheck(evt) {
+                evt.preventDefault();
+                if (confirm("Hold on there! Are you sure?")) el.submit();
+                });
+            });
+
+</script>
+{% endblock %}
