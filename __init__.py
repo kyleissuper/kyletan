@@ -74,5 +74,5 @@ def update_data():
 def page_not_found(error):
     return render_template("404.html", content=content), 404
 
-http_server = WSGIServer(("", 8081), app)
+http_server = WSGIServer(("", SERVER_PORT), app)
 http_server.serve_forever()
