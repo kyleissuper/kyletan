@@ -10,17 +10,24 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
     }
 }
 
+var popAvail = 1;
+
 function newListeners() {
 
-    // Listening for pop state seemed like a good idea,
-    // but it's hard to get it to work right.
-    /*
-    // Event listener for pop state
-    window.addEventListener("popstate", function() {
-        AJAX.direction = AJAX.direction === "+" ? "-" : "+";
-        AJAX.request( document.referrer );
+    // Listen for pop state
+    popAvail = 1;
+    window.addEventListener("popstate", function(evt) {
+        if (popAvail === 1) {
+            popAvail = 0;
+            // Need to find a better solution for this...
+            if ( document.URL === "http://128.199.155.92:8081/" ) {
+                AJAX.direction = "-";
+            } else {
+                AJAX.direction = "+";
+            };
+            AJAX.request( document.referrer );
+        };
     });
-    */
     
     // Event listener for home page card links
     Array.prototype.forEach.call( 
@@ -250,6 +257,7 @@ var AJAX = {
         // Remove old elements
         setTimeout(function() {
             document.getElementsByClassName("old").remove();
+            //window.history.replaceState({path: AJAX.url}, '', AJAX.url);
             window.history.pushState({path: AJAX.url}, '', AJAX.url);
             // Important!
             // It's probably not the most elegant way to do this...
