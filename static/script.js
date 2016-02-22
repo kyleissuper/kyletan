@@ -113,110 +113,128 @@ var AJAX = {
         return { x: xPosition, y: yPosition };
     },
     animate: function animate() {
+
         // Fade out old background
-        Velocity(document.getElementById("bg-old-0"), { opacity: 0 }, { duration: 350 });
-        // Get positions and sizes of old "rise" elements
-        AJAX.oldElements.animate_rise.forEach(function(id) {
-            var el = document.getElementById(id);
-            el.temp_data = {
-                height: el.clientHeight,
-                width: el.clientWidth - 40, // This should be minus paddingLeft and paddingRight. Not sure why it's not working for me.
-                position: AJAX.get_position( el )
-            };
-        });
-        // Get positions and sizes of old "fade" elements
-        AJAX.oldElements.animate_fade.forEach(function(id) {
-            var el = document.getElementById(id);
-            el.temp_data = {
-                height: el.offsetHeight,
-                width: el.offsetWidth,
-                position: AJAX.get_position( el )
-            };
-        });
-        // Fix old "rise" elements before animation
-        AJAX.oldElements.animate_rise.forEach(function(id) {
-            var el = document.getElementById(id);
-            el.style.position = "absolute";
-            el.style.height = el.temp_data.height + "px";
-            el.style.width = el.temp_data.width + "px";
-            el.style.top = el.temp_data.position.y + "px";
-            el.style.left = el.temp_data.position.x + "px";
-        });
-        // Fix old "fade" elements before animation
-        AJAX.oldElements.animate_fade.forEach(function(id) {
-            var el = document.getElementById(id);
-            el.style.position = "absolute";
-            el.style.height = el.temp_data.height + "px";
-            el.style.width = el.temp_data.width + "px";
-            el.style.top = el.temp_data.position.y + "px";
-            el.style.left = el.temp_data.position.x + "px";
-        });
-        // New "rise" elements!
-        AJAX.newElements.animate_rise.forEach(function(id) {
-            var el = document.getElementById(id),
-                direction = "+" === AJAX.direction ? 1 : -1;
-            el.style.opacity = 0;
-            el.style.marginTop = el.style.marginTop - ( AJAX.threshold * direction ) + "px";
-        });
-        // New "fade" elements!
-        AJAX.newElements.animate_fade.forEach(function(id) {
-            var el = document.getElementById(id);
-            el.style.opacity = 0;
-        });
-        // Animate out old "rise" elements
-        AJAX.oldElements.animate_rise.forEach(function(id) {
+        Velocity(
+                document.getElementById("bg-old-0"), 
+                { opacity: 0 }, 
+                { duration: 350 }
+                );
+
+        // Pre-animation
+
+            // Get positions and sizes of old "rise" elements
+            AJAX.oldElements.animate_rise.forEach(function(id) {
+                var el = document.getElementById(id);
+                el.temp_data = {
+                    height: el.clientHeight,
+                    width: el.clientWidth - 40, // This should be minus paddingLeft and paddingRight. Not sure why it's not working for me.
+                    position: AJAX.get_position( el )
+                };
+            });
+            // Get positions and sizes of old "fade" elements
+            AJAX.oldElements.animate_fade.forEach(function(id) {
+                var el = document.getElementById(id);
+                el.temp_data = {
+                    height: el.offsetHeight,
+                    width: el.offsetWidth,
+                    position: AJAX.get_position( el )
+                };
+            });
+            // Fix old "rise" elements before animation
+            AJAX.oldElements.animate_rise.forEach(function(id) {
+                var el = document.getElementById(id);
+                el.style.position = "absolute";
+                el.style.height = el.temp_data.height + "px";
+                el.style.width = el.temp_data.width + "px";
+                el.style.top = el.temp_data.position.y + "px";
+                el.style.left = el.temp_data.position.x + "px";
+            });
+            // Fix old "fade" elements before animation
+            AJAX.oldElements.animate_fade.forEach(function(id) {
+                var el = document.getElementById(id);
+                el.style.position = "absolute";
+                el.style.height = el.temp_data.height + "px";
+                el.style.width = el.temp_data.width + "px";
+                el.style.top = el.temp_data.position.y + "px";
+                el.style.left = el.temp_data.position.x + "px";
+            });
+            // New "rise" elements!
+            AJAX.newElements.animate_rise.forEach(function(id) {
+                var el = document.getElementById(id),
+                    direction = "+" === AJAX.direction ? 1 : -1;
+                el.style.opacity = 0;
+                el.style.marginTop = el.style.marginTop - ( AJAX.threshold * direction ) + "px";
+            });
+            // New "fade" elements!
+            AJAX.newElements.animate_fade.forEach(function(id) {
+                var el = document.getElementById(id);
+                el.style.opacity = 0;
+            });
+
+        // Animate!
+    
+            // Scroll to top
             Velocity(
-                document.getElementById(id),
-                {
-                    opacity: 0,
-                    top: AJAX.direction + "="+ AJAX.threshold +"px"
-                },
-                {
-                    duration: 250,
-                    delay: 125
-                }
-            );
-        });
-        // Animate out old "fade" elements
-        AJAX.oldElements.animate_fade.forEach(function(id) {
-            Velocity(
-                document.getElementById(id),
-                {
-                    opacity: 0
-                },
-                {
-                    duration: 250,
-                    delay: 125
-                }
-            );
-        });
-        // Animate in new "rise" elements
-        AJAX.newElements.animate_rise.forEach(function(id) {
-            Velocity(
-                document.getElementById(id),
-                {
-                    opacity: 1,
-                    marginTop: AJAX.direction + "=" + AJAX.threshold + "px"
-                },
-                {
-                    duration: 250,
-                    delay: 125
-                }
-            );
-        });
-        // Animate in new "fade" elements
-        AJAX.newElements.animate_fade.forEach(function(id) {
-            Velocity(
-                document.getElementById(id),
-                {
-                    opacity: 1
-                },
-                {
-                    duration: 250,
-                    delay: 125
-                }
-            );
-        });
+                    document.getElementsByTagName("body")[0],
+                    "scroll",
+                    { axis: "y" }
+                    );
+            // Animate out old "rise" elements
+            AJAX.oldElements.animate_rise.forEach(function(id) {
+                Velocity(
+                    document.getElementById(id),
+                    {
+                        opacity: 0,
+                        top: AJAX.direction + "="+ AJAX.threshold +"px"
+                    },
+                    {
+                        duration: 250,
+                        delay: 125
+                    }
+                );
+            });
+            // Animate out old "fade" elements
+            AJAX.oldElements.animate_fade.forEach(function(id) {
+                Velocity(
+                    document.getElementById(id),
+                    {
+                        opacity: 0
+                    },
+                    {
+                        duration: 250,
+                        delay: 125
+                    }
+                );
+            });
+            // Animate in new "rise" elements
+            AJAX.newElements.animate_rise.forEach(function(id) {
+                Velocity(
+                    document.getElementById(id),
+                    {
+                        opacity: 1,
+                        marginTop: AJAX.direction + "=" + AJAX.threshold + "px"
+                    },
+                    {
+                        duration: 250,
+                        delay: 125
+                    }
+                );
+            });
+            // Animate in new "fade" elements
+            AJAX.newElements.animate_fade.forEach(function(id) {
+                Velocity(
+                    document.getElementById(id),
+                    {
+                        opacity: 1
+                    },
+                    {
+                        duration: 250,
+                        delay: 125
+                    }
+                );
+            });
+
         // Remove old elements
         setTimeout(function() {
             document.getElementsByClassName("old").remove();
@@ -226,6 +244,7 @@ var AJAX = {
             // But it will do for now.
             newListeners();
         }, 600);
+
     },
     callback: function callback() {
 
