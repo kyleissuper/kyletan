@@ -244,8 +244,8 @@ var AJAX = {
                         top: AJAX.direction + "="+ AJAX.threshold +"px"
                     },
                     {
-                        duration: 250,
-                        delay: 125 + delay
+                        duration: 250 + delay,
+                        delay: 125
                     }
                 );
             });
@@ -261,8 +261,8 @@ var AJAX = {
                         opacity: 0
                     },
                     {
-                        duration: 250,
-                        delay: 125 + delay
+                        duration: 250 + delay,
+                        delay: 125
                     }
                 );
             });
