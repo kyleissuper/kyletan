@@ -236,7 +236,7 @@ var AJAX = {
             AJAX.oldElements.animate_rise.forEach(function(id) {
                 var delay = 0;
                 if (document.getElementById(id).classList.contains("delayed")) {
-                    delay = 100;
+                    delay = 200;
                 };
                 Velocity(
                     document.getElementById(id),
@@ -245,7 +245,7 @@ var AJAX = {
                         top: AJAX.direction + "="+ AJAX.threshold +"px"
                     },
                     {
-                        duration: 250 + delay,
+                        duration: 150 + delay,
                         delay: 125
                     }
                 );
@@ -254,7 +254,7 @@ var AJAX = {
             AJAX.oldElements.animate_fade.forEach(function(id) {
                 var delay = 0;
                 if (document.getElementById(id).classList.contains("delayed")) {
-                    delay = 100;
+                    delay = 200;
                 };
                 Velocity(
                     document.getElementById(id),
@@ -262,7 +262,7 @@ var AJAX = {
                         opacity: 0
                     },
                     {
-                        duration: 250 + delay,
+                        duration: 150 + delay,
                         delay: 125
                     }
                 );

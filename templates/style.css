@@ -1,9 +1,12 @@
+@media (max-width: 464px) {
+    .portfolio {
+        text-align: center;
+    }
+}
+
 @media (max-width: 590px) {
     .main {
         padding-right: 30px;
-    }
-    .portfolio {
-        text-align: center;
     }
 }
 
@@ -125,7 +128,15 @@ a {
                 text-shadow 0.25s ease,
                 box-shadow 0.25s ease;
 }
-.page_title p a:hover {
+a img {
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+a:hover img {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+.page_title p a:hover, a:hover.info {
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 .main a:hover {
@@ -134,14 +145,14 @@ a {
 a:hover.back {
     transform: scale(1.2);
 }
-a:hover.card, a:hover.link, a:hover.info {
+a:hover.card, a:hover.link {
     transform: translateY(-4px);
-}
-a:hover.info, a:hover.link span {
-    text-shadow: 0 9px 10px rgba(0, 0, 0, 0.3);
 }
 a:hover.card {
     box-shadow: 0 9px 10px rgba(0, 0, 0, 0.3);
+}
+a:hover.link span {
+    text-shadow: 0 9px 10px rgba(0, 0, 0, 0.3);
 }
 .portfolio {
     position: relative;
