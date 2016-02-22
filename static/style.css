@@ -13,6 +13,9 @@
         max-width: 540px;
         padding-right: Calc( 100% - 540px - 20px );
     }
+    .post_title {
+        max-width: 540px;
+    }
 }
 
 @media (max-width: 800px) {
@@ -24,6 +27,9 @@
     }
     .page_title h1 {
         font-size: 3em;
+    }
+    .post_title h1 {
+        font-size: 2em;
     }
     .main iframe {
         height: 550px;
