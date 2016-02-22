@@ -152,6 +152,10 @@ var AJAX = {
                     position: AJAX.get_position( el )
                 };
             });
+            // Fix body before animation
+            var body = document.body;
+            body.style.height = body.scrollHeight + "px";
+            body.style.overflow = "hidden";
             // Fix old "rise" elements before animation
             AJAX.oldElements.animate_rise.forEach(function(id) {
                 var el = document.getElementById(id);
@@ -189,7 +193,8 @@ var AJAX = {
             Velocity(
                     document.getElementsByTagName("body")[0],
                     "scroll",
-                    { axis: "y" }
+                    { axis: "y" },
+                    { duration: 250 }
                     );
             // Animate out old "rise" elements
             AJAX.oldElements.animate_rise.forEach(function(id) {
@@ -254,7 +259,7 @@ var AJAX = {
                 );
             });
 
-        // Remove old elements
+        // After animation
         setTimeout(function() {
             document.getElementsByClassName("old").remove();
             //window.history.replaceState({path: AJAX.url}, '', AJAX.url);
@@ -263,6 +268,8 @@ var AJAX = {
             // It's probably not the most elegant way to do this...
             // But it will do for now.
             newListeners();
+            document.body.style.height = "";
+            document.body.style.overflow = "";
         }, 600);
 
     },
