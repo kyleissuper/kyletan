@@ -11,6 +11,9 @@
     .page_title, .portfolio {
         padding: 20px;
     }
+    .page_title h1 {
+        font-size: 3em;
+    }
     .main {
         position: relative;
         left: 0px;
@@ -40,10 +43,13 @@
     }
     .post_title {
         position: relative;
-        width: Calc( 100% - 450px );
+        width: Calc( 100% - 500px );
     }
     .page_title h1 {
-        font-size: 5em;
+        font-size: 4em;
+    }
+    .post_title h1 {
+        font-size: 3em;
     }
     .main {
         position: absolute;
@@ -70,11 +76,17 @@
     .main {
         width: 540px;
     }
+    .page_title h1 {
+        font-size: 5em;
+    }
+    .post_title h1 {
+        font-size: 3.5em;
+    }
     .main iframe {
         height: 700px;
     }
     .post_title {
-        width: Calc( 100% - 650px );
+        width: Calc( 100% - 700px );
     }
 }
 
@@ -100,17 +112,31 @@ a {
     color: inherit;
     font-weight: bold;
     transition: transform 0.25s ease,
-                color 0.25s ease;
+                color 0.25s ease,
+                text-shadow 0.25s ease,
+                box-shadow 0.25s ease;
 }
-a:hover {
-    transform: translateY(-4px);
-    /*color: rgb(204, 72, 51);*/
+.page_title p a:hover {
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+.main a:hover {
+    color: rgb(204, 72, 51);
 }
 a:hover.back {
-    transform: scale(1);
+    transform: scale(1.2);
+}
+a:hover.card, a:hover.link, a:hover.info {
+    transform: translateY(-4px);
+}
+a:hover.info, a:hover.link span {
+    text-shadow: 0 9px 10px rgba(0, 0, 0, 0.3);
+}
+a:hover.card {
+    box-shadow: 0 9px 10px rgba(0, 0, 0, 0.3);
 }
 .portfolio {
     position: relative;
+    padding-bottom: 100px;
 }
 .bg.old {
     z-index: 10;
@@ -155,12 +181,12 @@ a:hover.back {
     width: 170px;
     height: 40px;
     background: #fff;
-    color: #000;
+    color: rgba(0, 0, 0, 0.87);
     /*border-radius: 0 0 0.5em 0.5em;*/
 }
 .main {
     background: #fff;
-    color: #000;
+    color: rgba(0, 0, 0, 0.87);
     padding: 60px 30px 100px 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
