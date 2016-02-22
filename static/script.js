@@ -127,8 +127,12 @@ var AJAX = {
             AJAX.oldElements.animate_rise.forEach(function(id) {
                 var el = document.getElementById(id);
                 el.temp_data = {
-                    height: el.clientHeight,
-                    width: el.clientWidth - 40, // This should be minus paddingLeft and paddingRight. Not sure why it's not working for me.
+                    height: el.clientHeight
+                            - getComputedStyle(el, null).paddingTop
+                            - getComputedStyle(el, null).paddingBottom,
+                    width: el.clientWidth
+                            - getComputedStyle(el, null).paddingLeft
+                            - getComputedStyle(el, null).paddingRight,
                     position: AJAX.get_position( el )
                 };
             });
@@ -209,6 +213,10 @@ var AJAX = {
             });
             // Animate in new "rise" elements
             AJAX.newElements.animate_rise.forEach(function(id) {
+                var delay = 0;
+                if (document.getElementById(id).classList.contains("delayed")) {
+                    delay = 100;
+                };
                 Velocity(
                     document.getElementById(id),
                     {
@@ -217,12 +225,16 @@ var AJAX = {
                     },
                     {
                         duration: 250,
-                        delay: 125
+                        delay: 125 + delay
                     }
                 );
             });
             // Animate in new "fade" elements
             AJAX.newElements.animate_fade.forEach(function(id) {
+                var delay = 0;
+                if (document.getElementById(id).classList.contains("delayed")) {
+                    delay = 100;
+                };
                 Velocity(
                     document.getElementById(id),
                     {
@@ -230,7 +242,7 @@ var AJAX = {
                     },
                     {
                         duration: 250,
-                        delay: 125
+                        delay: 125 + delay
                     }
                 );
             });
