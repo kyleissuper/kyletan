@@ -78,7 +78,7 @@ function raiseError( url, error ) {
 
 // Pretty, gracefully degrading page transitions
 var AJAX = {
-    threshold: 50,
+    threshold: 100,
     response: {},
     animateQ: [],
     renameOld: function renameOld() {
