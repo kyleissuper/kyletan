@@ -7,9 +7,9 @@
     <a href="mailto:kyle@kyletan.com" class="info" target="_blank"><i class="material-icons">&#xE0BE;</i><span>Email</span></a>
     <a href="https://www.linkedin.com/in/tankyle" class="info" target="_blank"><i class="material-icons">&#xE7FD;</i><span>LinkedIn</span></a>
 </header>
-<section class="portfolio animate_rise">
+<section class="portfolio animate_delete">
     {% for item in content["items"] %}
-        <a href="{{ url_for('post', post_id=item['post_id']) }}" class="card">
+        <a href="{{ url_for('post', post_id=item['post_id']) }}" class="card animate_rise">
             <div class="thumbnail" style="background-image: url('{{ url_for('photos', filename=item['image']) }}')"></div>
             <h4>{{ item["title"] }}</h4>
         </a>

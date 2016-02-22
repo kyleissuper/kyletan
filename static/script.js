@@ -1,3 +1,11 @@
+/*
+ * Things to improve:
+ * - AJAX transitions do not update the page title
+ * - Animations code could be restructured to be less
+ *   repetitive.
+ */
+
+
 // For removing elements
 Element.prototype.remove = function() {
     this.parentElement.removeChild(this);
@@ -37,6 +45,7 @@ function newListeners() {
                     "click",
                     function cardListener( evt ) {
                         evt.preventDefault();
+                        this.classList.add( "delayed" );
                         AJAX.direction = "+";
                         AJAX.request( this.href );
                     });
@@ -140,6 +149,12 @@ var AJAX = {
                     width: el.clientWidth
                             - getComputedStyle(el, null).paddingLeft
                             - getComputedStyle(el, null).paddingRight,
+                    margins: [
+                            getComputedStyle(el, null).marginTop.slice(0, -2) - 0,
+                            getComputedStyle(el, null).marginRight.slice(0, -2) - 0,
+                            getComputedStyle(el, null).marginBottom.slice(0, -2) - 0,
+                            getComputedStyle(el, null).marginLeft.slice(0, -2) - 0
+                    ],
                     position: AJAX.get_position( el )
                 };
             });
@@ -147,8 +162,18 @@ var AJAX = {
             AJAX.oldElements.animate_fade.forEach(function(id) {
                 var el = document.getElementById(id);
                 el.temp_data = {
-                    height: el.offsetHeight,
-                    width: el.offsetWidth,
+                    height: el.clientHeight
+                            - getComputedStyle(el, null).paddingTop
+                            - getComputedStyle(el, null).paddingBottom,
+                    width: el.clientWidth
+                            - getComputedStyle(el, null).paddingLeft
+                            - getComputedStyle(el, null).paddingRight,
+                    margins: [
+                            getComputedStyle(el, null).marginTop.slice(0, -2) - 0,
+                            getComputedStyle(el, null).marginRight.slice(0, -2) - 0,
+                            getComputedStyle(el, null).marginBottom.slice(0, -2) - 0,
+                            getComputedStyle(el, null).marginLeft.slice(0, -2) - 0
+                    ],
                     position: AJAX.get_position( el )
                 };
             });
@@ -156,6 +181,14 @@ var AJAX = {
             var body = document.body;
             body.style.height = body.scrollHeight + "px";
             body.style.overflow = "hidden";
+            // Change "animate_delete" to relative
+            AJAX.oldElements.animate_delete.forEach(function(id) {
+                var el = document.getElementById(id);
+                el.style.position = "relative";
+                el.style.height = "0px";
+                el.style.width = "0px";
+                el.style.padding = "0px";
+            });
             // Fix old "rise" elements before animation
             AJAX.oldElements.animate_rise.forEach(function(id) {
                 var el = document.getElementById(id);
@@ -164,6 +197,7 @@ var AJAX = {
                 el.style.width = el.temp_data.width + "px";
                 el.style.top = el.temp_data.position.y + "px";
                 el.style.left = el.temp_data.position.x + "px";
+                el.style.margin = "0px";
             });
             // Fix old "fade" elements before animation
             AJAX.oldElements.animate_fade.forEach(function(id) {
@@ -173,6 +207,7 @@ var AJAX = {
                 el.style.width = el.temp_data.width + "px";
                 el.style.top = el.temp_data.position.y + "px";
                 el.style.left = el.temp_data.position.x + "px";
+                el.style.margin = "0px";
             });
             // New "rise" elements!
             AJAX.newElements.animate_rise.forEach(function(id) {
@@ -194,10 +229,14 @@ var AJAX = {
                     document.getElementsByTagName("body")[0],
                     "scroll",
                     { axis: "y" },
-                    { duration: 250 }
+                    { duration: 400 }
                     );
             // Animate out old "rise" elements
             AJAX.oldElements.animate_rise.forEach(function(id) {
+                var delay = 0;
+                if (document.getElementById(id).classList.contains("delayed")) {
+                    delay = 100;
+                };
                 Velocity(
                     document.getElementById(id),
                     {
@@ -206,12 +245,16 @@ var AJAX = {
                     },
                     {
                         duration: 250,
-                        delay: 125
+                        delay: 125 + delay
                     }
                 );
             });
             // Animate out old "fade" elements
             AJAX.oldElements.animate_fade.forEach(function(id) {
+                var delay = 0;
+                if (document.getElementById(id).classList.contains("delayed")) {
+                    delay = 100;
+                };
                 Velocity(
                     document.getElementById(id),
                     {
@@ -219,7 +262,7 @@ var AJAX = {
                     },
                     {
                         duration: 250,
-                        delay: 125
+                        delay: 125 + delay
                     }
                 );
             });
@@ -314,7 +357,8 @@ var AJAX = {
             "back": [],
             "animate_fade": [],
             "animate_rise": [],
-            "bg": []
+            "bg": [],
+            "animate_delete": []
         },
         this.newElements = {
             "back": [],
