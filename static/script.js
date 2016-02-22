@@ -178,6 +178,7 @@ var AJAX = {
                 };
             });
             // Fix body before animation
+            var scrollY = window.scrollY;
             var body = document.body;
             body.style.height = body.scrollHeight + "px";
             body.style.overflow = "hidden";
@@ -195,7 +196,7 @@ var AJAX = {
                 el.style.position = "absolute";
                 el.style.height = el.temp_data.height + "px";
                 el.style.width = el.temp_data.width + "px";
-                el.style.top = el.temp_data.position.y + "px";
+                el.style.top = el.temp_data.position.y + scrollY + "px";
                 el.style.left = el.temp_data.position.x + "px";
                 el.style.margin = "0px";
             });
@@ -205,7 +206,7 @@ var AJAX = {
                 el.style.position = "absolute";
                 el.style.height = el.temp_data.height + "px";
                 el.style.width = el.temp_data.width + "px";
-                el.style.top = el.temp_data.position.y + "px";
+                el.style.top = el.temp_data.position.y + scrollY + "px";
                 el.style.left = el.temp_data.position.x + "px";
                 el.style.margin = "0px";
             });
@@ -313,7 +314,13 @@ var AJAX = {
             newListeners();
             document.body.style.height = "";
             document.body.style.overflow = "";
-        }, 700);
+            Array.prototype.forEach.call(
+                document.getElementsByTagName("a"),
+                function removeOpacity( el ) {
+                    el.style.opacity = "";
+                }
+            );
+        }, 750);
 
     },
     callback: function callback() {
