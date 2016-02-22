@@ -12,6 +12,11 @@ content = {
         "image": DEF_BG
         }
 
+@app.after_request
+def add_header(response):
+    response.cache_control.max_age = 3000
+    return response
+
 @app.route("/")
 def home():
     content = {
