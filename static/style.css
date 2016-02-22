@@ -4,7 +4,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
     body {
         overflow-x: hidden;
     }
@@ -30,7 +30,7 @@
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 750px) {
     .page_title, .portfolio {
         padding: 100px 0 0 50px;
     }
@@ -42,7 +42,7 @@
         width: Calc( 100% - 450px );
     }
     .page_title h1 {
-        font-size: 3em;
+        font-size: 5em;
     }
     .main {
         position: absolute;
@@ -61,7 +61,7 @@
     }
     .link {
         position: fixed;
-        bottom: 70px;
+        bottom: 100px;
     }
 }
 
@@ -77,6 +77,9 @@
     }
 }
 
+html {
+    overflow-y: scroll;
+}
 html, body {
     min-height: 100%;
     font-family: Roboto, sans-serif;
@@ -124,17 +127,17 @@ a:hover {
 }
 .card {
     display: inline-block;
-    margin: 0 2px 10px 2px;
+    margin: 0 1px 10px 1px;
     vertical-align: bottom;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 0.5em;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    /*border-radius: 0.5em;*/
 }
 .card .thumbnail {
     width: 200px;
     height: 200px;
     background-size: cover;
     background-position: center center;
-    border-radius: 0.5em 0.5em 0 0;
+    /*border-radius: 0.5em 0.5em 0 0;*/
 }
 .card h4 {
     display: block;
@@ -144,7 +147,7 @@ a:hover {
     height: 40px;
     background: #fff;
     color: #000;
-    border-radius: 0 0 0.5em 0.5em;
+    /*border-radius: 0 0 0.5em 0.5em;*/
 }
 .main {
     background: #fff;

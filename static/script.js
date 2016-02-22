@@ -72,8 +72,8 @@ newListeners();
 
 // Error messages
 function raiseError( url, error ) {
-    alert( url, error );
-    //window.location.href = url;
+    //alert( url, error );
+    window.location.href = url;
 };
 
 // Pretty, gracefully degrading page transitions
@@ -313,7 +313,7 @@ var AJAX = {
             newListeners();
             document.body.style.height = "";
             document.body.style.overflow = "";
-        }, 600);
+        }, 700);
 
     },
     callback: function callback() {
