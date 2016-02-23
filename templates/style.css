@@ -38,9 +38,12 @@
         height: 550px;
     }
     .back {
-        position: absolute;
+        position: fixed;
         top: 10px;
         left: 10px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 1),
+                     0 4px 20px rgba(0, 0, 0, 1),
+                     0 4px 20px rgba(0, 0, 0, 1);
     }
 }
 
@@ -119,7 +122,10 @@ html, body {
 header p {
     max-width: 540px;
 }
-a {
+h1 {
+    font-weight: 400;
+}
+a, a.link span {
     text-decoration: none;
     color: inherit;
     font-weight: bold;
@@ -128,13 +134,15 @@ a {
                 text-shadow 0.25s ease,
                 box-shadow 0.25s ease;
 }
-a img {
-    transition: transform 0.25s ease,
-                box-shadow 0.25s ease;
+a img, a .thumbnail {
+    transition: box-shadow 0.25s ease,
+                opacity 0.25s ease;
+}
+a:hover img, a:hover .thumbnail {
+    opacity: 0.87;
 }
 a:hover img {
-    transform: translateY(-4px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.87);
 }
 .page_title p a:hover, a:hover.info {
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
@@ -145,14 +153,15 @@ a:hover img {
 a:hover.back {
     transform: scale(1.2);
 }
-a:hover.card, a:hover.link {
+a:hover.link {
     transform: translateY(-4px);
 }
 a:hover.card {
-    box-shadow: 0 9px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.7);
 }
 a:hover.link span {
-    text-shadow: 0 9px 10px rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.87);
+    text-shadow: 0 7px 10px rgba(0, 0, 0, 0.7);
 }
 .portfolio {
     position: relative;
@@ -181,6 +190,7 @@ a:hover.link span {
     z-index: 1;
 }
 .card {
+    position: relative;
     display: inline-block;
     margin: 0 1px 10px 1px;
     vertical-align: bottom;
@@ -196,13 +206,20 @@ a:hover.link span {
 }
 .card h4 {
     display: block;
-    margin: 0;
-    padding: 10px 15px;
+    padding: 15px;
     width: 170px;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.87);
+    text-align: left;
+    /*
+    position: relative;
     height: 40px;
     background: #fff;
     color: rgba(0, 0, 0, 0.87);
-    /*border-radius: 0 0 0.5em 0.5em;*/
+    */
 }
 .main {
     background: #fff;
