@@ -1,4 +1,4 @@
-@media (max-width: 464px) {
+@media (max-width: 473px) {
     .portfolio {
         text-align: center;
     }
@@ -6,18 +6,25 @@
 
 @media (max-width: 590px) {
     .main {
-        padding-right: 30px;
+        padding-left: 60px !important;
+    }
+    .post_title {
+        padding-left: 60px !important;
     }
 }
 
 @media (min-width: 591px) and (max-width: 800px) {
     .main {
         position: relative;
-        max-width: 540px;
-        padding-right: Calc( 100% - 540px - 20px );
+        max-width: 520px;
+        /*padding-right: Calc( 100% - 540px - 24px ) !important;*/
+        padding-right: Calc( 50% - 230px ) !important;
+        padding-left: Calc( 50% - 230px ) !important;
     }
     .post_title {
-        max-width: 540px;
+        max-width: 520px;
+        padding-right: Calc( 50% - 230px ) !important;
+        padding-left: Calc( 50% - 230px ) !important;
     }
 }
 
@@ -26,7 +33,7 @@
         overflow-x: hidden;
     }
     .page_title, .portfolio {
-        padding: 20px;
+        padding: 24px;
     }
     .page_title h1 {
         font-size: 3em;
@@ -41,15 +48,17 @@
         position: fixed;
         top: 10px;
         left: 10px;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 1),
-                     0 4px 20px rgba(0, 0, 0, 1),
-                     0 4px 20px rgba(0, 0, 0, 1);
+        /*text-shadow: 0 4px 20px rgba(255, 255, 255, 1),
+                     0 4px 20px rgba(255, 255, 255, 1),
+                     0 4px 20px rgba(255, 255, 255, 1);*/
+        text-shadow: 0 4px 16px rgba(0, 0, 0, 1),
+                     0 4px 16px rgba(0, 0, 0, 1);
     }
 }
 
 @media (min-width: 801px) {
     .page_title, .portfolio {
-        padding: 100px 0 0 50px;
+        padding: 100px 50px 0 50px;
     }
     .page_title {
         position: relative;
@@ -69,7 +78,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        min-height: Calc( 100% - 160px );
+        min-height: Calc( 100% - 72px );
         width: 350px;
         padding-right: 30px;
     }
@@ -110,10 +119,11 @@ html {
 }
 body {
     overflow-y: hidden;
+    background: #cc4833;
 }
 html, body {
     min-height: 100%;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: rgba(255, 255, 255, 1);
     margin-bottom: 0;
     overflow-x: hidden;
@@ -121,9 +131,16 @@ html, body {
 }
 header p {
     max-width: 540px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
 }
 h1 {
+    letter-spacing: -0.04em;
+}
+h1, h2, h3, h4 {
     font-weight: 400;
+    letter-spacing: -0.01em;
 }
 a, a.link span {
     text-decoration: none;
@@ -188,6 +205,7 @@ a:hover.link span {
 }
 .back {
     z-index: 1;
+    padding: 8px;
 }
 .card {
     position: relative;
@@ -223,12 +241,26 @@ a:hover.link span {
 }
 .main {
     background: #fff;
-    color: rgba(0, 0, 0, 0.87);
+    /*color: rgba(0, 0, 0, 0.87);*/
     /*padding: 60px 30px 100px 20px;*/
-    padding-top: 60px;
+    /*padding-top: 60px;
     padding-bottom: 100px;
-    padding-left: 20px;
+    padding-left: 20px;*/
+    padding: 24px;
+    padding-bottom: 48px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    color: #666666;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+.main a, .main h1, .main h2, .main h3, .main h4 {
+    color: #000;
+}
+.main h4 {
+    font-size: 16px;
+    line-height: 24px;
 }
 .main img {
     max-width: 100%;
@@ -244,7 +276,8 @@ a:hover.link span {
     height: 2em;
     border-radius: 1em;
     background: #fff;
-    color: #757575;
+    /*color: #757575;*/
+    color: #666666;
     line-height: 2em;
     text-align: center;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
