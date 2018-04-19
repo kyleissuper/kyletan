@@ -196,7 +196,7 @@ var AJAX = {
                 el.style.position = "absolute";
                 el.style.height = el.temp_data.height + "px";
                 el.style.width = el.temp_data.width + "px";
-                el.style.top = el.temp_data.position.y + scrollY + "px";
+                el.style.top = el.temp_data.position.y + "px";
                 el.style.left = el.temp_data.position.x + "px";
                 el.style.margin = "0px";
             });
@@ -206,7 +206,7 @@ var AJAX = {
                 el.style.position = "absolute";
                 el.style.height = el.temp_data.height + "px";
                 el.style.width = el.temp_data.width + "px";
-                el.style.top = el.temp_data.position.y + scrollY + "px";
+                el.style.top = el.temp_data.position.y + "px";
                 el.style.left = el.temp_data.position.x + "px";
                 el.style.margin = "0px";
             });
