@@ -1,12 +1,12 @@
 import json
-from flask import Flask, render_template, send_from_directory, abort, redirect, url_for, request
+from flask import Flask, session, render_template, send_from_directory, abort, redirect, url_for, request
 from gevent.wsgi import WSGIServer
 from pymongo import MongoClient
 from settings import *
 from basic_auth import *
 
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 
 content = {
         "image": DEF_BG
