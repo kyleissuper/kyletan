@@ -183,6 +183,7 @@ a:hover.link span {
 .portfolio {
     position: relative;
     padding-bottom: 100px;
+    max-width: 1000px;
 }
 .bg.old {
     z-index: 10;
